@@ -103,13 +103,6 @@ Orderer: &OrdererDefaults
 
     OrdererType: solo
 
-    # EtcdRaft:
-    #     Consenters:
-    #     - Host: orderer.example.com
-    #       Port: 7050
-    #       ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
-    #       ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
-
     Addresses:
         - orderer.example.com:7050
 
@@ -171,40 +164,9 @@ Profiles:
         Orderer:
             <<: *OrdererDefaults
             OrdererType: solo
-
-                
-            # OrdererType: etcdraft
-            # EtcdRaft:
-            #     Consenters:
-            #     - Host: orderer.example.com
-            #       Port: 7050
-            #       ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
-            #       ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
-                
-                # - Host: orderer.example2.com
-                #   Port: 8050
-                #   ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example2.com/tls/server.crt
-                #   ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example2.com/tls/server.crt
-                # - Host: orderer.example3.com
-                #   Port: 9050
-                #   ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example3.com/tls/server.crt
-                #   ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example3.com/tls/server.crt
-                # - Host: orderer.example4.com
-                #   Port: 10050
-                #   ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example4.com/tls/server.crt
-                #   ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example4.com/tls/server.crt
-                # - Host: orderer.example5.com
-                #   Port: 11050
-                #   ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example5.com/tls/server.crt
-                #   ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example5.com/tls/server.crt    
-
     
             Addresses:
                 - orderer.example.com:7050
-                # - orderer.example2.com:8050
-                # - orderer.example3.com:9050
-                # - orderer.example3.com:10050
-                # - orderer.example3.com:11050
 
             Organizations:
             - *OrdererOrg
