@@ -54,22 +54,22 @@ OrdererOrgs:
         SANS:
             - "localhost"
             - "127.0.0.1"
-      # - Hostname: orderer12
-      #   SANS:
-      #       - "localhost"
-      #       - "127.0.0.1"
-      # - Hostname: orderer13
-      #   SANS:
-      #       - "localhost"
-      #       - "127.0.0.1"
-      # - Hostname: orderer14
-      #   SANS:
-      #       - "localhost"
-      #       - "127.0.0.1"
-      # - Hostname: orderer15
-      #   SANS:
-      #       - "localhost"
-      #       - "127.0.0.1"
+      - Hostname: orderer12
+        SANS:
+            - "localhost"
+            - "127.0.0.1"
+      - Hostname: orderer13
+        SANS:
+            - "localhost"
+            - "127.0.0.1"
+      - Hostname: orderer14
+        SANS:
+            - "localhost"
+            - "127.0.0.1"
+      - Hostname: orderer15
+        SANS:
+            - "localhost"
+            - "127.0.0.1"
 
 
 # ---------------------------------------------------------------------------
