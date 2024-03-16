@@ -16,7 +16,7 @@ Number of transaction in caliper = 1000.
 
 tps of caliper = 100	
 
-### <!-- Parameter to be changed -->
+### Parameter to be changed 
 test batch size with different values		
 
 Note:- File Location: artifacts/channel/configtx.yaml (**line : 111**)
