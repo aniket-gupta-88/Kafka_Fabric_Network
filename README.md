@@ -2,9 +2,9 @@
 
 This repository is a research project for Hyperledger Fabric using the Kafka ordering system.
 
-## Graph3 Branch
+## Graph4 Branch
 
-The `Graph3` branch is configured with the following parameters:
+The `Graph4` branch is configured with the following parameters:
 
 ### Configurations Done
 - Number of orderers: 3
