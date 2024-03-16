@@ -108,6 +108,7 @@ Orderer: &OrdererDefaults
 
     BatchTimeout: 2s
 
+    # Make the changes here
     BatchSize:
         MaxMessageCount: 10
         AbsoluteMaxBytes: 99 MB

@@ -10,8 +10,8 @@ caliper:
 
 info:
   Version: 2.1.0
-  Size: 2 Orgs with 1 Peer
-  Orderer: Solo
+  Size: 2 Orgs with 5 Peer
+  Orderer: Kafka
   Distribution: Single Host
   StateDB: CouchDB
 
