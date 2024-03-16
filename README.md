@@ -12,12 +12,12 @@ Block batch size = 10.
 
 Block batch timeout = 2
 
-Number of transaction in caliper = 1000.
+Number of caliper workers = 5.
 
 tps of caliper = 100	
 
 ### Parameter to be changed 
-Test batch timeout with different values		
+#### Test transaction number/count with different values		
 
 Note:- File Location: caliper/caliper-benchmarks-local/config.yaml
 
