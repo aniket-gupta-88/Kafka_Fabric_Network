@@ -106,12 +106,7 @@ Orderer: &OrdererDefaults
     Addresses:
         - orderer.example.com:7050
 
-    # Make the changes here
     BatchTimeout: 2s
-    # BatchTimeout: 4s
-    # BatchTimeout: 6s
-    # BatchTimeout: 10s
-    # BatchTimeout: 14s
 
     BatchSize:
         MaxMessageCount: 10
