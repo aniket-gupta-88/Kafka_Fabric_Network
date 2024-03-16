@@ -18,5 +18,3 @@ The `Graph3` branch is configured with the following parameters:
 Test Batch Size with Different Values
 
 For testing purposes, you can adjust the batch size parameter. Please refer to line 111 in the `artifacts/channel/configtx.yaml` file to make changes.
-
-Note: File Location - `artifacts/channel/configtx.yaml` (line: 111)
