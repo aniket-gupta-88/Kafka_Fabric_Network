@@ -1,7 +1,7 @@
 # BE_RESEARCH_HF_SOLO
 ### This is a research project repository for Hyperledger Fabric using Kafka ordering system
 
-# The is branch for Graph3 with the following parameters in the project :- 
+# The branch is for Graph3 with the following parameters in the project :- 
 
 ### Configurations done
 number of orderer = 3		
