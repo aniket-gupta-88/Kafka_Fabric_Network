@@ -8,17 +8,17 @@ Number of orderer = 3.
 
 Number of peers = 5.	
 
-Block batch size = 10.	
+Block batch size = 10.
 
-Number of caliper worker = 5.		
+Block batch timeout = 2
 
 Number of transaction in caliper = 1000.
 
 tps of caliper = 100	
 
 ### Parameter to be changed 
-Test batch timeout with different values		
+Test Caliper worker with different values		
 
-Note:- File Location: artifacts/channel/configtx.yaml (**line : 111**)
+Note:- File Location: caliper/caliper-benchmarks-local/config.yaml (**line : 4**)
 
 

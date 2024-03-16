@@ -1,7 +1,7 @@
 test:
   workers:
     type: local
-    number: 5
+    number: 5   # Make the changes here
   rounds:
     - label: Create Car
       txNumber: 1000
