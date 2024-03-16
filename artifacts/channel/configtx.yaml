@@ -109,6 +109,8 @@ Orderer: &OrdererDefaults
         - orderer3.example.com:9050
         - orderer4.example.com:10050
         - orderer5.example.com:11050
+        - orderer6.example.com:12050
+        - orderer7.example.com:13050
 
     BatchTimeout: 2s
 

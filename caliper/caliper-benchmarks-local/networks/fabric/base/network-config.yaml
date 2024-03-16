@@ -124,6 +124,18 @@ orderers:
       ssl-target-name-override: orderer5.example.com
     tlsCACerts:
       path: networks/fabric/base/crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+  orderer6.example.com:
+    url: grpcs://localhost:12050
+    grpcOptions:
+      ssl-target-name-override: orderer6.example.com
+    tlsCACerts:
+      path: networks/fabric/base/crypto-config/ordererOrganizations/example.com/orderers/orderer6.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+  orderer7.example.com:
+    url: grpcs://localhost:13050
+    grpcOptions:
+      ssl-target-name-override: orderer7.example.com
+    tlsCACerts:
+      path: networks/fabric/base/crypto-config/ordererOrganizations/example.com/orderers/orderer7.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
 
 peers:
   peer0.org1.example.com:

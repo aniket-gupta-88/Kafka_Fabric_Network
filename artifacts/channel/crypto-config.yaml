@@ -30,6 +30,14 @@ OrdererOrgs:
         SANS:
             - "localhost"
             - "127.0.0.1"
+      - Hostname: orderer6
+        SANS:
+            - "localhost"
+            - "127.0.0.1"
+      - Hostname: orderer7
+        SANS:
+            - "localhost"
+            - "127.0.0.1"
 
 # ---------------------------------------------------------------------------
 # "PeerOrgs" - Definition of organizations managing peer nodes
