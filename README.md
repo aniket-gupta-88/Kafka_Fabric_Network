@@ -1,24 +1,20 @@
 # BE_RESEARCH_HF_SOLO
-### This is a research project repository for Hyperledger Fabric using Kafka ordering system
 
-# The branch is for Graph3 with the following parameters in the project :- 
+This repository is a research project for Hyperledger Fabric using the Kafka ordering system.
 
-### Configurations done
-Number of orderer = 3.
+## Graph3 Branch
 
-Number of peers = 5.	
+The `Graph3` branch is configured with the following parameters:
 
-Block batch size = 10.	
+### Configurations Done
+- Number of orderers: 3
+- Number of peers: 5
+- Block batch size: 10
+- Number of Caliper workers: 5
+- Number of transactions in Caliper: 1000
+- TPS (Transactions Per Second) of Caliper: 100
 
-Number of caliper worker = 5.		
+### Parameter to Be Changed
+#### Test Batch Timeout with Different Values
 
-Number of transaction in caliper = 1000.
-
-tps of caliper = 100	
-
-### Parameter to be changed 
-#### Test batch timeout with different values		
-
-Note:- File Location: artifacts/channel/configtx.yaml (**line : 110**)
-
-
+For testing purposes, you can adjust the batch timeout parameter. Please refer to line 110 in the `artifacts/channel/configtx.yaml` file to make changes.
