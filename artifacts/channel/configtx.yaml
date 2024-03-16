@@ -101,18 +101,24 @@ Application: &ApplicationDefaults
 
 Orderer: &OrdererDefaults
 
-    OrdererType: solo
+    OrdererType: kafka
 
     Addresses:
         - orderer.example.com:7050
 
-
-    BatchTimeout: 0.1s
+    BatchTimeout: 2s
 
     BatchSize:
-        MaxMessageCount: 2
+        MaxMessageCount: 10
         AbsoluteMaxBytes: 99 MB
         PreferredMaxBytes: 512 KB
+
+    Kafka:
+        Brokers:
+            - kafka0:9092
+            - kafka1:9092
+            - kafka2:9092
+            - kafka3:9092
 
     Organizations:
 
@@ -163,11 +169,6 @@ Profiles:
             <<: *ChannelCapabilities
         Orderer:
             <<: *OrdererDefaults
-            OrdererType: solo
-    
-            Addresses:
-                - orderer.example.com:7050
-
             Organizations:
             - *OrdererOrg
             Capabilities:

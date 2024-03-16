@@ -1,2 +1,2 @@
 # BE_RESEARCH_HF_SOLO
-This is a research project repository for Hyperledger Fabric using SOLO ordering system
+This is a research project repository for Hyperledger Fabric using Kafka ordering system

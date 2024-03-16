@@ -1,0 +1,441 @@
+version: "2"
+
+networks:
+  test:
+
+# volumes:
+#  orderer.example.com:
+#  orderer.example2.com:
+#  orderer.example3.com:
+#  orderer.example4.com:
+#  orderer.example5.com:
+
+services:
+
+  zookeeper1:
+    image: confluentinc/cp-zookeeper:5.3.1
+    container_name: zookeeper1
+    environment:
+      ZOOKEEPER_SERVER_ID: 1
+      ZOOKEEPER_CLIENT_PORT: "2181"
+      ZOOKEEPER_TICK_TIME: "2000"
+      ZOOKEEPER_SERVERS: "zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888"
+      KAFKA_OPTS: "-Dzookeeper.4lw.commands.whitelist=*"
+    ports:
+      - "2181:2181"
+
+  zookeeper2:
+    image: confluentinc/cp-zookeeper:5.3.1
+    container_name: zookeeper2
+    environment:
+      ZOOKEEPER_SERVER_ID: 2
+      ZOOKEEPER_CLIENT_PORT: "2182"
+      ZOOKEEPER_TICK_TIME: "2000"
+      ZOOKEEPER_SERVERS: "zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888"
+      KAFKA_OPTS: "-Dzookeeper.4lw.commands.whitelist=*"
+    ports:
+      - "2182:2181"
+
+  zookeeper3:
+    image: confluentinc/cp-zookeeper:5.3.1
+    container_name: zookeeper3
+    environment:
+      ZOOKEEPER_SERVER_ID: 3
+      ZOOKEEPER_CLIENT_PORT: "2183"
+      ZOOKEEPER_TICK_TIME: "2000"
+      ZOOKEEPER_SERVERS: "zookeeper1:2888:3888;zookeeper2:2888:3888;zookeeper3:2888:3888"
+      KAFKA_OPTS: "-Dzookeeper.4lw.commands.whitelist=*"
+    ports:
+      - "2183:2181"
+
+  kafka1:
+    image: confluentinc/cp-kafka:7.3.2
+    hostname: kafka1
+    container_name: kafka1
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka1:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper1:2181,zookeeper2:2182,zookeeper3:2183"
+
+  kafka2:
+    image: confluentinc/cp-kafka:7.3.2
+    hostname: kafka2
+    container_name: kafka2
+    ports:
+      - "9093:9092"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka2:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper1:2181,zookeeper2:2182,zookeeper3:2183"
+
+  kafka3:
+    image: confluentinc/cp-kafka:7.3.2
+    hostname: kafka3
+    container_name: kafka3
+    ports:
+      - "9094:9092"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka3:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper1:2181,zookeeper2:2182,zookeeper3:2183"
+
+  kafka4:
+    image: confluentinc/cp-kafka:7.3.2
+    hostname: kafka4
+    container_name: kafka4
+    ports:
+      - "9095:9092"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka4:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper1:2181,zookeeper2:2182,zookeeper3:2183"
+
+
+  orderer.example.com:
+    container_name: orderer.example.com
+    image: hyperledger/fabric-orderer:2.1
+    dns_search: .
+    environment:
+      - ORDERER_GENERAL_LOGLEVEL=info
+      - FABRIC_LOGGING_SPEC=INFO
+      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+      - ORDERER_GENERAL_BOOTSTRAPMETHOD=file
+      - ORDERER_GENERAL_BOOTSTRAPFILE=/var/hyperledger/orderer/genesis.block
+      - GRPC_TRACE=all=true
+      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
+      - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/orderer/msp
+      - ORDERER_GENERAL_TLS_ENABLED=true
+      - ORDERER_GENERAL_TLS_PRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+      - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt
+      - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+      - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=/var/hyperledger/orderer/tls/server.crt
+      - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+      - ORDERER_GENERAL_CLUSTER_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+      - ORDERER_METRICS_PROVIDER=prometheus
+      - ORDERER_OPERATIONS_LISTENADDRESS=0.0.0.0:8443
+      - ORDERER_GENERAL_LISTENPORT=7050
+        # Kafka Releated Variables
+      - ORDERER_KAFKA_BROKERS=kafka1:9092,kafka2:9093,kafka3:9094,kafka:9095
+      - ORDERER_KAFKA_TOPIC_REPLICATIONFACTOR=1
+      - ORDERER_KAFKA_VERBOSE=true
+      - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
+      - ORDERER_KAFKA_RETRY_SHORTTOTAL=30s
+      - ORDERER_KAFKA_RETRY_LONGINTERVAL=5m
+      - ORDERER_KAFKA_RETRY_LONGTOTAL=5h
+      - ORDERER_KAFKA_MAXMESSAGEBYTES=103809024
+      - ORDERER_KAFKA_VERSION=1.0.0
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
+    command: orderer
+    ports:
+      - 7050:7050
+      - 8443:8443
+    networks:
+      - test
+    volumes:
+      - ./channel/genesis.block:/var/hyperledger/orderer/genesis.block
+      - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp:/var/hyperledger/orderer/msp
+      - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls:/var/hyperledger/orderer/tls
+      # - orderer.example.com:/var/hyperledger/production/orderer
+      # - /var/pavan/orderer:/var/hyperledger/production
+
+  # orderer2.example.com:
+  #   container_name: orderer2.example.com
+  #   image: hyperledger/fabric-orderer:2.1
+  #   dns_search: .
+  #   environment:
+  #     - ORDERER_GENERAL_LOGLEVEL=info
+  #     - FABRIC_LOGGING_SPEC=INFO
+  #     - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+  #     - ORDERER_GENERAL_BOOTSTRAPMETHOD=file
+  #     - ORDERER_GENERAL_BOOTSTRAPFILE=/var/hyperledger/orderer/genesis.block
+  #     - GRPC_TRACE=all=true
+  #     - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
+  #     - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/orderer/msp
+  #     - ORDERER_GENERAL_TLS_ENABLED=true
+  #     - ORDERER_GENERAL_TLS_PRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+  #     - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt
+  #     - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+  #     - ORDERER_KAFKA_TOPIC_REPLICATIONFACTOR=1
+  #     - ORDERER_KAFKA_VERBOSE=true
+  #     - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=/var/hyperledger/orderer/tls/server.crt
+  #     - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+  #     - ORDERER_GENERAL_CLUSTER_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+  #     - ORDERER_METRICS_PROVIDER=prometheus
+  #     - ORDERER_OPERATIONS_LISTENADDRESS=0.0.0.0:8443
+  #     - ORDERER_GENERAL_LISTENPORT=8050
+  #   working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
+  #   command: orderer
+  #   ports:
+  #     - 8050:8050
+  #     - 8444:8443
+  #   networks:
+  #     - test
+  #   volumes:
+  #     - ./channel/genesis.block:/var/hyperledger/orderer/genesis.block
+  #     - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/msp:/var/hyperledger/orderer/msp
+  #     - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls:/var/hyperledger/orderer/tls
+  #     # - orderer2.example.com:/var/hyperledger/production/orderer
+
+  # orderer3.example.com:
+  #   container_name: orderer3.example.com
+  #   image: hyperledger/fabric-orderer:2.1
+  #   dns_search: .
+  #   environment:
+  #     - ORDERER_GENERAL_LOGLEVEL=info
+  #     - FABRIC_LOGGING_SPEC=INFO
+  #     - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+  #     - ORDERER_GENERAL_BOOTSTRAPMETHOD=file
+  #     - ORDERER_GENERAL_BOOTSTRAPFILE=/var/hyperledger/orderer/genesis.block
+  #     - GRPC_TRACE=all=true
+  #     - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
+  #     - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/orderer/msp
+  #     - ORDERER_GENERAL_TLS_ENABLED=true
+  #     - ORDERER_GENERAL_TLS_PRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+  #     - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt
+  #     - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+  #     - ORDERER_KAFKA_TOPIC_REPLICATIONFACTOR=1
+  #     - ORDERER_KAFKA_VERBOSE=true
+  #     - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=/var/hyperledger/orderer/tls/server.crt
+  #     - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+  #     - ORDERER_GENERAL_CLUSTER_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+  #     - ORDERER_METRICS_PROVIDER=prometheus
+  #     - ORDERER_OPERATIONS_LISTENADDRESS=0.0.0.0:8443
+  #     - ORDERER_GENERAL_LISTENPORT=9050
+  #   working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
+  #   command: orderer
+  #   ports:
+  #     - 9050:9050
+  #     - 8445:8443
+  #   networks:
+  #     - test
+  #   volumes:
+  #     - ./channel/genesis.block:/var/hyperledger/orderer/genesis.block
+  #     - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/msp:/var/hyperledger/orderer/msp
+  #     - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls:/var/hyperledger/orderer/tls
+  #     # - orderer.example3.com:/var/hyperledger/production/orderer
+  #     # - /var/pavan/orderer:/var/hyperledger/production        
+    
+  couchdb0:
+    container_name: couchdb0
+    image: couchdb:3.1.1
+    environment:
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=adminpw
+    ports:
+      - 5984:5984
+    networks:
+      - test
+
+  couchdb1:
+    container_name: couchdb1
+    image: couchdb:3.1.1
+    environment:
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=adminpw
+    ports:
+      - 6984:5984
+    networks:
+      - test
+
+  peer0.org1.example.com:
+    container_name: peer0.org1.example.com
+    extends:
+      file: base.yaml
+      service: peer-base
+    environment:
+      - FABRIC_LOGGING_SPEC=info
+      - ORDERER_GENERAL_LOGLEVEL=info
+      - CORE_PEER_LOCALMSPID=Org1MSP
+
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+
+      - CORE_PEER_ID=peer0.org1.example.com
+      - CORE_PEER_ADDRESS=peer0.org1.example.com:7051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.org1.example.com:7052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+      # Peer used to bootstrap gossip within organisation
+      # - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org1.example.com:8051
+      # Exposed for discovery Service
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org1.example.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb0:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=admin
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=adminpw
+      - CORE_METRICS_PROVIDER=prometheus
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/crypto/peer/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/crypto/peer/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/crypto/peer/msp
+      # Kakfa releated terms
+      - CORE_PEER_ADDRESSAUTODETECT=true
+     # Correct Kafka bootstrap configuration
+      - CORE_PEER_GOSSIP_USELEADERELECTION=true
+      - CORE_PEER_GOSSIP_ORGLEADER=false
+      - CORE_PEER_GOSSIP_BOOTSTRAP=kafka1:9092,kafka2:9093,kafka3:9094,kafka:9095
+      - CORE_PEER_ENDORSER_TLS_CERT_FILE=/etc/hyperledger/crypto/peer/tls/server.crt
+      - CORE_PEER_ENDORSER_TLS_KEY_FILE=/etc/hyperledger/crypto/peer/tls/server.key
+      - CORE_PEER_ENDORSER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
+    depends_on:
+      - couchdb0
+    ports:
+      - 7051:7051
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp:/etc/hyperledger/crypto/peer/msp
+      - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls:/etc/hyperledger/crypto/peer/tls
+      - /var/run/:/host/var/run/
+      # - /var/pavan/peer0-org1:/var/hyperledger/production
+      # - ./channel/:/etc/hyperledger/channel/
+    networks:
+      - test
+
+  # peer1.org1.example.com:
+  #   container_name: peer1.org1.example.com
+  #   extends:
+  #     file: base.yaml
+  #     service: peer-base
+  #   environment:
+  #     - FABRIC_LOGGING_SPEC=info
+  #     - ORDERER_GENERAL_LOGLEVEL=info
+  #     - CORE_PEER_LOCALMSPID=Org1MSP
+
+  #     - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+
+  #     - CORE_PEER_ID=peer1.org1.example.com
+  #     - CORE_PEER_ADDRESS=peer1.org1.example.com:7061
+  #     - CORE_PEER_LISTENADDRESS=0.0.0.0:7061
+  #     - CORE_PEER_CHAINCODEADDRESS=peer1.org1.example.com:7062
+  #     - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7062
+  #     - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org1.example.com:7061
+  #     - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+  #     - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb0:5984
+  #     - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=admin
+  #     - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=adminpw
+  #     - CORE_METRICS_PROVIDER=prometheus
+  #     - CORE_PEER_TLS_ENABLED=true
+  #     - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/crypto/peer/tls/server.crt
+  #     - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/crypto/peer/tls/server.key
+  #     - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
+  #     - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/crypto/peer/msp
+  #     # Kafka releated variables
+  #     - CORE_PEER_ADDRESSAUTODETECT=true
+  #     # Correct Kafka bootstrap configuration
+  #     - CORE_PEER_GOSSIP_USELEADERELECTION=true
+  #     - CORE_PEER_GOSSIP_ORGLEADER=false
+  #      CORE_PEER_GOSSIP_BOOTSTRAP=kafka1:9092,kafka2:9093,kafka3:9094,kafka:9095
+  #     - CORE_PEER_ENDORSER_TLS_CERT_FILE=/etc/hyperledger/crypto/peer/tls/server.crt
+  #     - CORE_PEER_ENDORSER_TLS_KEY_FILE=/etc/hyperledger/crypto/peer/tls/server.key
+  #     - CORE_PEER_ENDORSER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
+  #   depends_on:
+  #     - couchdb0
+  #   ports:
+  #     - 7061:7061
+  #   volumes:
+  #     - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp:/etc/hyperledger/crypto/peer/msp
+  #     - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls:/etc/hyperledger/crypto/peer/tls
+  #     - /var/run/:/host/var/run/
+  #     # - ./channel/:/etc/hyperledger/channel/
+  #   networks:
+  #     - test
+
+  peer0.org2.example.com:
+    container_name: peer0.org2.example.com
+    extends:
+      file: base.yaml
+      service: peer-base
+    environment:
+      - FABRIC_LOGGING_SPEC=info
+      - ORDERER_GENERAL_LOGLEVEL=info
+      - CORE_PEER_LOCALMSPID=Org2MSP
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+      - CORE_PEER_ID=peer0.org2.example.com
+      - CORE_PEER_ADDRESS=peer0.org2.example.com:9051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:9051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.org2.example.com:9052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:9052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org2.example.com:9051
+      # - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org2.example.com:10051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb1:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=admin
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=adminpw
+      - CORE_METRICS_PROVIDER=prometheus
+      # - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9440
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/crypto/peer/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/crypto/peer/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
+      - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/crypto/peer/msp
+
+      - CORE_PEER_GOSSIP_USELEADERELECTION=true
+      - CORE_PEER_GOSSIP_ORGLEADER=false
+       CORE_PEER_GOSSIP_BOOTSTRAP=kafka1:9092,kafka2:9093,kafka3:9094,kafka:9095
+      - CORE_PEER_ENDORSER_TLS_CERT_FILE=/etc/hyperledger/crypto/peer/tls/server.crt
+      - CORE_PEER_ENDORSER_TLS_KEY_FILE=/etc/hyperledger/crypto/peer/tls/server.key
+      - CORE_PEER_ENDORSER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
+    ports:
+      - 9051:9051
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp:/etc/hyperledger/crypto/peer/msp
+      - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls:/etc/hyperledger/crypto/peer/tls
+      - /var/run/:/host/var/run/
+      # - /var/pavan/peer0-org2:/var/hyperledger/production
+      # - ./channel/:/etc/hyperledger/channel/
+    networks:
+      - test
+  
+  # peer1.org2.example.com:
+  #   container_name: peer1.org2.example.com
+  #   extends:
+  #     file: base.yaml
+  #     service: peer-base
+  #   environment:
+  #     - FABRIC_LOGGING_SPEC=info
+  #     - ORDERER_GENERAL_LOGLEVEL=info
+  #     - CORE_PEER_LOCALMSPID=Org2MSP
+
+  #     - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
+
+  #     - CORE_PEER_ID=peer1.org2.example.com
+  #     - CORE_PEER_ADDRESS=peer1.org2.example.com:9061
+  #     - CORE_PEER_LISTENADDRESS=0.0.0.0:9061
+  #     - CORE_PEER_CHAINCODEADDRESS=peer1.org2.example.com:9062
+  #     - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:9062
+  #     - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org2.example.com:9061
+  #     # - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.example.com:9051
+
+  #     - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+  #     - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb1:5984
+  #     - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=admin
+  #     - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=adminpw
+  #     - CORE_METRICS_PROVIDER=prometheus
+  #     # - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9440
+  #     - CORE_PEER_TLS_ENABLED=true
+  #     - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/crypto/peer/tls/server.crt
+  #     - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/crypto/peer/tls/server.key
+  #     - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
+  #     - CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/crypto/peer/msp
+
+  #     - CORE_PEER_GOSSIP_USELEADERELECTION=true
+  #     - CORE_PEER_GOSSIP_ORGLEADER=false
+  #      CORE_PEER_GOSSIP_BOOTSTRAP=kafka1:9092,kafka2:9093,kafka3:9094,kafka:9095
+  #     - CORE_PEER_ENDORSER_TLS_CERT_FILE=/etc/hyperledger/crypto/peer/tls/server.crt
+  #     - CORE_PEER_ENDORSER_TLS_KEY_FILE=/etc/hyperledger/crypto/peer/tls/server.key
+  #     - CORE_PEER_ENDORSER_TLS_ROOTCERT_FILE=/etc/hyperledger/crypto/peer/tls/ca.crt
+  #   ports:
+  #     - 9061:9061
+  #   volumes:
+  #     - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/msp:/etc/hyperledger/crypto/peer/msp
+  #     - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls:/etc/hyperledger/crypto/peer/tls
+  #     - /var/run/:/host/var/run/
+  #     # - ./channel/:/etc/hyperledger/channel/
+  #   networks:
+  #     - test
+  
