@@ -17,8 +17,8 @@ Number of transaction in caliper = 1000.
 tps of caliper = 100	
 
 ### Parameter to be changed 
-Test batch timeout with different values		
+#### Test batch timeout with different values		
 
-Note:- File Location: artifacts/channel/configtx.yaml (**line : 111**)
+Note:- File Location: artifacts/channel/configtx.yaml (**line : 110**)
 
 
