@@ -4,11 +4,16 @@
 # The branch is for Graph3 with the following parameters in the project :- 
 
 ### Configurations done
-number of orderer = 3		
-number of peers = 5		
-number of batch timeout = 2		
-number of caliper worker = 5		
-number of transaction in caliper = 1000		
+Number of orderer = 3.
+
+Number of peers = 5.	
+
+Number of batch timeout = 2.	
+
+Number of caliper worker = 5.		
+
+Number of transaction in caliper = 1000.
+
 tps of caliper = 100	
 
 ### <!-- Parameter to be changed -->
