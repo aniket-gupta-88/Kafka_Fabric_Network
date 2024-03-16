@@ -57,7 +57,6 @@ echo "deploy base chaincode for fabcar"
 echo "**************************************************************"
 echo
 ./deployChainCode.sh
-
 echo
 echo "**************************************************************"
 echo "########   Network Up   #############"

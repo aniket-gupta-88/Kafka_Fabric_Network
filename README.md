@@ -4,7 +4,7 @@
 # The branch is for Graph3 with the following parameters in the project :- 
 
 ### Configurations done
-Number of orderer = 3.
+Number of orderers = 3.
 
 Number of peers = 5.	
 
@@ -16,8 +16,7 @@ Number of caliper workers = 5.
 
 Number of transaction in caliper = 1000.	
 
-### Parameter to be changed 
-#### Test tps of caliper with different values		
+tps of caliper = 100.
 
 Note:- File Location: caliper/caliper-benchmarks-local/config.yaml
 
