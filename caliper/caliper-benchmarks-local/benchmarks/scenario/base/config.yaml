@@ -1,6 +1,6 @@
 variables:
-  txNumber: 1000 #Make the changes here
-  tps: 100
+  txNumber: 1000 
+  tps: 100  #Make changes here
 
 test:
   workers:
