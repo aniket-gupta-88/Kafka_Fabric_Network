@@ -191,402 +191,6 @@ services:
       - kafka2
       - kafka3
 
-  orderer4.example.com:
-    container_name: orderer4.example.com
-    image: hyperledger/fabric-orderer:2.0.0
-    environment:
-      - FABRIC_LOGGING_SPEC=debug
-      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-      - ORDERER_GENERAL_GENESISMETHOD=file
-      - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
-      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
-      - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/crypto/orderer/msp
-      - ORDERER_GENERAL_TLS_ENABLED=true
-      - ORDERER_GENERAL_TLS_PRIVATEKEY=/etc/hyperledger/crypto/orderer/tls/server.key
-      - ORDERER_GENERAL_TLS_CERTIFICATE=/etc/hyperledger/crypto/orderer/tls/server.crt
-      - ORDERER_GENERAL_TLS_ROOTCAS=[/etc/hyperledger/crypto/orderer/tls/ca.crt, /etc/hyperledger/crypto/peerOrg1/tls/ca.crt, /etc/hyperledger/crypto/peerOrg2/tls/ca.crt]
-      - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
-      - ORDERER_KAFKA_RETRY_SHORTTOTAL=30s
-      - ORDERER_KAFKA_VERBOSE=true
-    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
-    command: orderer
-    ports:
-      - 10050:10050
-    volumes:
-        - ./channel:/etc/hyperledger/configtx
-        - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/:/etc/hyperledger/crypto/orderer
-        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/:/etc/hyperledger/crypto/peerOrg1
-        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/:/etc/hyperledger/crypto/peerOrg2
-        - ./channel/genesis.block:/var/hyperledger/orderer/genesis.block
-    depends_on:
-      - kafka0
-      - kafka1
-      - kafka2
-      - kafka3
-
-  orderer5.example.com:
-    container_name: orderer5.example.com
-    image: hyperledger/fabric-orderer:2.0.0
-    environment:
-      - FABRIC_LOGGING_SPEC=debug
-      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-      - ORDERER_GENERAL_GENESISMETHOD=file
-      - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
-      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
-      - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/crypto/orderer/msp
-      - ORDERER_GENERAL_TLS_ENABLED=true
-      - ORDERER_GENERAL_TLS_PRIVATEKEY=/etc/hyperledger/crypto/orderer/tls/server.key
-      - ORDERER_GENERAL_TLS_CERTIFICATE=/etc/hyperledger/crypto/orderer/tls/server.crt
-      - ORDERER_GENERAL_TLS_ROOTCAS=[/etc/hyperledger/crypto/orderer/tls/ca.crt, /etc/hyperledger/crypto/peerOrg1/tls/ca.crt, /etc/hyperledger/crypto/peerOrg2/tls/ca.crt]
-      - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
-      - ORDERER_KAFKA_RETRY_SHORTTOTAL=30s
-      - ORDERER_KAFKA_VERBOSE=true
-    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
-    command: orderer
-    ports:
-      - 11050:11050
-    volumes:
-        - ./channel:/etc/hyperledger/configtx
-        - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/:/etc/hyperledger/crypto/orderer
-        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/:/etc/hyperledger/crypto/peerOrg1
-        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/:/etc/hyperledger/crypto/peerOrg2
-        - ./channel/genesis.block:/var/hyperledger/orderer/genesis.block
-    depends_on:
-      - kafka0
-      - kafka1
-      - kafka2
-      - kafka3
-
-  orderer6.example.com:
-    container_name: orderer6.example.com
-    image: hyperledger/fabric-orderer:2.0.0
-    environment:
-      - FABRIC_LOGGING_SPEC=debug
-      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-      - ORDERER_GENERAL_GENESISMETHOD=file
-      - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
-      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
-      - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/crypto/orderer/msp
-      - ORDERER_GENERAL_TLS_ENABLED=true
-      - ORDERER_GENERAL_TLS_PRIVATEKEY=/etc/hyperledger/crypto/orderer/tls/server.key
-      - ORDERER_GENERAL_TLS_CERTIFICATE=/etc/hyperledger/crypto/orderer/tls/server.crt
-      - ORDERER_GENERAL_TLS_ROOTCAS=[/etc/hyperledger/crypto/orderer/tls/ca.crt, /etc/hyperledger/crypto/peerOrg1/tls/ca.crt, /etc/hyperledger/crypto/peerOrg2/tls/ca.crt]
-      - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
-      - ORDERER_KAFKA_RETRY_SHORTTOTAL=30s
-      - ORDERER_KAFKA_VERBOSE=true
-    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
-    command: orderer
-    ports:
-      - 12050:12050
-    volumes:
-        - ./channel:/etc/hyperledger/configtx
-        - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer6.example.com/:/etc/hyperledger/crypto/orderer
-        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/:/etc/hyperledger/crypto/peerOrg1
-        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/:/etc/hyperledger/crypto/peerOrg2
-        - ./channel/genesis.block:/var/hyperledger/orderer/genesis.block
-    depends_on:
-      - kafka0
-      - kafka1
-      - kafka2
-      - kafka3
-
-  orderer7.example.com:
-    container_name: orderer7.example.com
-    image: hyperledger/fabric-orderer:2.0.0
-    environment:
-      - FABRIC_LOGGING_SPEC=debug
-      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-      - ORDERER_GENERAL_GENESISMETHOD=file
-      - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
-      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
-      - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/crypto/orderer/msp
-      - ORDERER_GENERAL_TLS_ENABLED=true
-      - ORDERER_GENERAL_TLS_PRIVATEKEY=/etc/hyperledger/crypto/orderer/tls/server.key
-      - ORDERER_GENERAL_TLS_CERTIFICATE=/etc/hyperledger/crypto/orderer/tls/server.crt
-      - ORDERER_GENERAL_TLS_ROOTCAS=[/etc/hyperledger/crypto/orderer/tls/ca.crt, /etc/hyperledger/crypto/peerOrg1/tls/ca.crt, /etc/hyperledger/crypto/peerOrg2/tls/ca.crt]
-      - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
-      - ORDERER_KAFKA_RETRY_SHORTTOTAL=30s
-      - ORDERER_KAFKA_VERBOSE=true
-    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
-    command: orderer
-    ports:
-      - 13050:13050
-    volumes:
-        - ./channel:/etc/hyperledger/configtx
-        - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer7.example.com/:/etc/hyperledger/crypto/orderer
-        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/:/etc/hyperledger/crypto/peerOrg1
-        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/:/etc/hyperledger/crypto/peerOrg2
-        - ./channel/genesis.block:/var/hyperledger/orderer/genesis.block
-    depends_on:
-      - kafka0
-      - kafka1
-      - kafka2
-      - kafka3
-
-  orderer8.example.com:
-    container_name: orderer8.example.com
-    image: hyperledger/fabric-orderer:2.0.0
-    environment:
-      - FABRIC_LOGGING_SPEC=debug
-      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-      - ORDERER_GENERAL_GENESISMETHOD=file
-      - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
-      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
-      - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/crypto/orderer/msp
-      - ORDERER_GENERAL_TLS_ENABLED=true
-      - ORDERER_GENERAL_TLS_PRIVATEKEY=/etc/hyperledger/crypto/orderer/tls/server.key
-      - ORDERER_GENERAL_TLS_CERTIFICATE=/etc/hyperledger/crypto/orderer/tls/server.crt
-      - ORDERER_GENERAL_TLS_ROOTCAS=[/etc/hyperledger/crypto/orderer/tls/ca.crt, /etc/hyperledger/crypto/peerOrg1/tls/ca.crt, /etc/hyperledger/crypto/peerOrg2/tls/ca.crt]
-      - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
-      - ORDERER_KAFKA_RETRY_SHORTTOTAL=30s
-      - ORDERER_KAFKA_VERBOSE=true
-    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
-    command: orderer
-    ports:
-      - 14050:14050
-    volumes:
-        - ./channel:/etc/hyperledger/configtx
-        - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer8.example.com/:/etc/hyperledger/crypto/orderer
-        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/:/etc/hyperledger/crypto/peerOrg1
-        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/:/etc/hyperledger/crypto/peerOrg2
-        - ./channel/genesis.block:/var/hyperledger/orderer/genesis.block
-    depends_on:
-      - kafka0
-      - kafka1
-      - kafka2
-      - kafka3
-
-  orderer9.example.com:
-    container_name: orderer9.example.com
-    image: hyperledger/fabric-orderer:2.0.0
-    environment:
-      - FABRIC_LOGGING_SPEC=debug
-      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-      - ORDERER_GENERAL_GENESISMETHOD=file
-      - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
-      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
-      - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/crypto/orderer/msp
-      - ORDERER_GENERAL_TLS_ENABLED=true
-      - ORDERER_GENERAL_TLS_PRIVATEKEY=/etc/hyperledger/crypto/orderer/tls/server.key
-      - ORDERER_GENERAL_TLS_CERTIFICATE=/etc/hyperledger/crypto/orderer/tls/server.crt
-      - ORDERER_GENERAL_TLS_ROOTCAS=[/etc/hyperledger/crypto/orderer/tls/ca.crt, /etc/hyperledger/crypto/peerOrg1/tls/ca.crt, /etc/hyperledger/crypto/peerOrg2/tls/ca.crt]
-      - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
-      - ORDERER_KAFKA_RETRY_SHORTTOTAL=30s
-      - ORDERER_KAFKA_VERBOSE=true
-    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
-    command: orderer
-    ports:
-      - 15050:15050
-    volumes:
-        - ./channel:/etc/hyperledger/configtx
-        - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer9.example.com/:/etc/hyperledger/crypto/orderer
-        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/:/etc/hyperledger/crypto/peerOrg1
-        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/:/etc/hyperledger/crypto/peerOrg2
-        - ./channel/genesis.block:/var/hyperledger/orderer/genesis.block
-    depends_on:
-      - kafka0
-      - kafka1
-      - kafka2
-      - kafka3
-
-  orderer10.example.com:
-    container_name: orderer10.example.com
-    image: hyperledger/fabric-orderer:2.0.0
-    environment:
-      - FABRIC_LOGGING_SPEC=debug
-      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-      - ORDERER_GENERAL_GENESISMETHOD=file
-      - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
-      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
-      - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/crypto/orderer/msp
-      - ORDERER_GENERAL_TLS_ENABLED=true
-      - ORDERER_GENERAL_TLS_PRIVATEKEY=/etc/hyperledger/crypto/orderer/tls/server.key
-      - ORDERER_GENERAL_TLS_CERTIFICATE=/etc/hyperledger/crypto/orderer/tls/server.crt
-      - ORDERER_GENERAL_TLS_ROOTCAS=[/etc/hyperledger/crypto/orderer/tls/ca.crt, /etc/hyperledger/crypto/peerOrg1/tls/ca.crt, /etc/hyperledger/crypto/peerOrg2/tls/ca.crt]
-      - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
-      - ORDERER_KAFKA_RETRY_SHORTTOTAL=30s
-      - ORDERER_KAFKA_VERBOSE=true
-    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
-    command: orderer
-    ports:
-      - 16050:16050
-    volumes:
-        - ./channel:/etc/hyperledger/configtx
-        - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer10.example.com/:/etc/hyperledger/crypto/orderer
-        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/:/etc/hyperledger/crypto/peerOrg1
-        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/:/etc/hyperledger/crypto/peerOrg2
-        - ./channel/genesis.block:/var/hyperledger/orderer/genesis.block
-    depends_on:
-      - kafka0
-      - kafka1
-      - kafka2
-      - kafka3
-
-  orderer11.example.com:
-    container_name: orderer11.example.com
-    image: hyperledger/fabric-orderer:2.0.0
-    environment:
-      - FABRIC_LOGGING_SPEC=debug
-      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-      - ORDERER_GENERAL_GENESISMETHOD=file
-      - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
-      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
-      - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/crypto/orderer/msp
-      - ORDERER_GENERAL_TLS_ENABLED=true
-      - ORDERER_GENERAL_TLS_PRIVATEKEY=/etc/hyperledger/crypto/orderer/tls/server.key
-      - ORDERER_GENERAL_TLS_CERTIFICATE=/etc/hyperledger/crypto/orderer/tls/server.crt
-      - ORDERER_GENERAL_TLS_ROOTCAS=[/etc/hyperledger/crypto/orderer/tls/ca.crt, /etc/hyperledger/crypto/peerOrg1/tls/ca.crt, /etc/hyperledger/crypto/peerOrg2/tls/ca.crt]
-      - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
-      - ORDERER_KAFKA_RETRY_SHORTTOTAL=30s
-      - ORDERER_KAFKA_VERBOSE=true
-    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
-    command: orderer
-    ports:
-      - 17050:17050
-    volumes:
-        - ./channel:/etc/hyperledger/configtx
-        - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer11.example.com/:/etc/hyperledger/crypto/orderer
-        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/:/etc/hyperledger/crypto/peerOrg1
-        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/:/etc/hyperledger/crypto/peerOrg2
-        - ./channel/genesis.block:/var/hyperledger/orderer/genesis.block
-    depends_on:
-      - kafka0
-      - kafka1
-      - kafka2
-      - kafka3
-
-  orderer12.example.com:
-    container_name: orderer12.example.com
-    image: hyperledger/fabric-orderer:2.0.0
-    environment:
-      - FABRIC_LOGGING_SPEC=debug
-      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-      - ORDERER_GENERAL_GENESISMETHOD=file
-      - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
-      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
-      - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/crypto/orderer/msp
-      - ORDERER_GENERAL_TLS_ENABLED=true
-      - ORDERER_GENERAL_TLS_PRIVATEKEY=/etc/hyperledger/crypto/orderer/tls/server.key
-      - ORDERER_GENERAL_TLS_CERTIFICATE=/etc/hyperledger/crypto/orderer/tls/server.crt
-      - ORDERER_GENERAL_TLS_ROOTCAS=[/etc/hyperledger/crypto/orderer/tls/ca.crt, /etc/hyperledger/crypto/peerOrg1/tls/ca.crt, /etc/hyperledger/crypto/peerOrg2/tls/ca.crt]
-      - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
-      - ORDERER_KAFKA_RETRY_SHORTTOTAL=30s
-      - ORDERER_KAFKA_VERBOSE=true
-    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
-    command: orderer
-    ports:
-      - 18050:18050
-    volumes:
-        - ./channel:/etc/hyperledger/configtx
-        - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer12.example.com/:/etc/hyperledger/crypto/orderer
-        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/:/etc/hyperledger/crypto/peerOrg1
-        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/:/etc/hyperledger/crypto/peerOrg2
-        - ./channel/genesis.block:/var/hyperledger/orderer/genesis.block
-    depends_on:
-      - kafka0
-      - kafka1
-      - kafka2
-      - kafka3
-
-  orderer13.example.com:
-    container_name: orderer13.example.com
-    image: hyperledger/fabric-orderer:2.0.0
-    environment:
-      - FABRIC_LOGGING_SPEC=debug
-      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-      - ORDERER_GENERAL_GENESISMETHOD=file
-      - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
-      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
-      - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/crypto/orderer/msp
-      - ORDERER_GENERAL_TLS_ENABLED=true
-      - ORDERER_GENERAL_TLS_PRIVATEKEY=/etc/hyperledger/crypto/orderer/tls/server.key
-      - ORDERER_GENERAL_TLS_CERTIFICATE=/etc/hyperledger/crypto/orderer/tls/server.crt
-      - ORDERER_GENERAL_TLS_ROOTCAS=[/etc/hyperledger/crypto/orderer/tls/ca.crt, /etc/hyperledger/crypto/peerOrg1/tls/ca.crt, /etc/hyperledger/crypto/peerOrg2/tls/ca.crt]
-      - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
-      - ORDERER_KAFKA_RETRY_SHORTTOTAL=30s
-      - ORDERER_KAFKA_VERBOSE=true
-    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
-    command: orderer
-    ports:
-      - 19050:19050
-    volumes:
-        - ./channel:/etc/hyperledger/configtx
-        - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer13.example.com/:/etc/hyperledger/crypto/orderer
-        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/:/etc/hyperledger/crypto/peerOrg1
-        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/:/etc/hyperledger/crypto/peerOrg2
-        - ./channel/genesis.block:/var/hyperledger/orderer/genesis.block
-    depends_on:
-      - kafka0
-      - kafka1
-      - kafka2
-      - kafka3
-
-  orderer14.example.com:
-    container_name: orderer14.example.com
-    image: hyperledger/fabric-orderer:2.0.0
-    environment:
-      - FABRIC_LOGGING_SPEC=debug
-      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-      - ORDERER_GENERAL_GENESISMETHOD=file
-      - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
-      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
-      - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/crypto/orderer/msp
-      - ORDERER_GENERAL_TLS_ENABLED=true
-      - ORDERER_GENERAL_TLS_PRIVATEKEY=/etc/hyperledger/crypto/orderer/tls/server.key
-      - ORDERER_GENERAL_TLS_CERTIFICATE=/etc/hyperledger/crypto/orderer/tls/server.crt
-      - ORDERER_GENERAL_TLS_ROOTCAS=[/etc/hyperledger/crypto/orderer/tls/ca.crt, /etc/hyperledger/crypto/peerOrg1/tls/ca.crt, /etc/hyperledger/crypto/peerOrg2/tls/ca.crt]
-      - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
-      - ORDERER_KAFKA_RETRY_SHORTTOTAL=30s
-      - ORDERER_KAFKA_VERBOSE=true
-    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
-    command: orderer
-    ports:
-      - 20050:20050
-    volumes:
-        - ./channel:/etc/hyperledger/configtx
-        - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer14.example.com/:/etc/hyperledger/crypto/orderer
-        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/:/etc/hyperledger/crypto/peerOrg1
-        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/:/etc/hyperledger/crypto/peerOrg2
-        - ./channel/genesis.block:/var/hyperledger/orderer/genesis.block
-    depends_on:
-      - kafka0
-      - kafka1
-      - kafka2
-      - kafka3
-
-  orderer15.example.com:
-    container_name: orderer15.example.com
-    image: hyperledger/fabric-orderer:2.0.0
-    environment:
-      - FABRIC_LOGGING_SPEC=debug
-      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-      - ORDERER_GENERAL_GENESISMETHOD=file
-      - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
-      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
-      - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/crypto/orderer/msp
-      - ORDERER_GENERAL_TLS_ENABLED=true
-      - ORDERER_GENERAL_TLS_PRIVATEKEY=/etc/hyperledger/crypto/orderer/tls/server.key
-      - ORDERER_GENERAL_TLS_CERTIFICATE=/etc/hyperledger/crypto/orderer/tls/server.crt
-      - ORDERER_GENERAL_TLS_ROOTCAS=[/etc/hyperledger/crypto/orderer/tls/ca.crt, /etc/hyperledger/crypto/peerOrg1/tls/ca.crt, /etc/hyperledger/crypto/peerOrg2/tls/ca.crt]
-      - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
-      - ORDERER_KAFKA_RETRY_SHORTTOTAL=30s
-      - ORDERER_KAFKA_VERBOSE=true
-    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
-    command: orderer
-    ports:
-      - 21050:21050
-    volumes:
-        - ./channel:/etc/hyperledger/configtx
-        - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer15.example.com/:/etc/hyperledger/crypto/orderer
-        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/:/etc/hyperledger/crypto/peerOrg1
-        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/:/etc/hyperledger/crypto/peerOrg2
-        - ./channel/genesis.block:/var/hyperledger/orderer/genesis.block
-    depends_on:
-      - kafka0
-      - kafka1
-      - kafka2
-      - kafka3
-
   peer0.org1.example.com:
     container_name: peer0.org1.example.com
     extends:
@@ -692,7 +296,7 @@ services:
       - CORE_PEER_ID=peer4.org1.example.com
       - CORE_PEER_LOCALMSPID=Org1MSP
       - CORE_PEER_ADDRESS=peer4.org1.example.com:7051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.example.com:7051      
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer5.org1.example.com:7051      
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer4.org1.example.com:7051
       - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb4-1:5984
@@ -706,6 +310,126 @@ services:
     depends_on:
       - orderer.example.com
       - couchdb4-1
+
+  peer5.org1.example.com:
+    container_name: peer5.org1.example.com
+    extends:
+      file:   base.yaml
+      service: peer
+    environment:
+      - CORE_PEER_ID=peer5.org1.example.com
+      - CORE_PEER_LOCALMSPID=Org1MSP
+      - CORE_PEER_ADDRESS=peer5.org1.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer6.org1.example.com:7051      
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer5.org1.example.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb5-1:5984
+    ports:
+      - 7076:7051
+      - 7078:7053
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer5.org1.example.com/msp:/etc/hyperledger/fabric/msp
+        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer5.org1.example.com/tls:/etc/hyperledger/fabric/tls
+    depends_on:
+      - orderer.example.com
+      - couchdb5-1
+  
+  peer6.org1.example.com:
+    container_name: peer6.org1.example.com
+    extends:
+      file:   base.yaml
+      service: peer
+    environment:
+      - CORE_PEER_ID=peer6.org1.example.com
+      - CORE_PEER_LOCALMSPID=Org1MSP
+      - CORE_PEER_ADDRESS=peer6.org1.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer7.org1.example.com:7051      
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer6.org1.example.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb6-1:5984
+    ports:
+      - 7081:7051
+      - 7082:7053
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer6.org1.example.com/msp:/etc/hyperledger/fabric/msp
+        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer6.org1.example.com/tls:/etc/hyperledger/fabric/tls
+    depends_on:
+      - orderer.example.com
+      - couchdb6-1
+  
+  peer7.org1.example.com:
+    container_name: peer7.org1.example.com
+    extends:
+      file:   base.yaml
+      service: peer
+    environment:
+      - CORE_PEER_ID=peer7.org1.example.com
+      - CORE_PEER_LOCALMSPID=Org1MSP
+      - CORE_PEER_ADDRESS=peer7.org1.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer8.org1.example.com:7051      
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer7.org1.example.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb7-1:5984
+    ports:
+      - 7086:7051
+      - 7088:7053
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer7.org1.example.com/msp:/etc/hyperledger/fabric/msp
+        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer7.org1.example.com/tls:/etc/hyperledger/fabric/tls
+    depends_on:
+      - orderer.example.com
+      - couchdb7-1
+  
+  peer8.org1.example.com:
+    container_name: peer8.org1.example.com
+    extends:
+      file:   base.yaml
+      service: peer
+    environment:
+      - CORE_PEER_ID=peer8.org1.example.com
+      - CORE_PEER_LOCALMSPID=Org1MSP
+      - CORE_PEER_ADDRESS=peer8.org1.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer9.org1.example.com:7051      
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer8.org1.example.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb8-1:5984
+    ports:
+      - 7091:7051
+      - 7092:7053
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer8.org1.example.com/msp:/etc/hyperledger/fabric/msp
+        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer8.org1.example.com/tls:/etc/hyperledger/fabric/tls
+    depends_on:
+      - orderer.example.com
+      - couchdb8-1
+  
+  peer9.org1.example.com:
+    container_name: peer9.org1.example.com
+    extends:
+      file:   base.yaml
+      service: peer
+    environment:
+      - CORE_PEER_ID=peer9.org1.example.com
+      - CORE_PEER_LOCALMSPID=Org1MSP
+      - CORE_PEER_ADDRESS=peer9.org1.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.example.com:7051      
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer9.org1.example.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb9-1:5984
+    ports:
+      - 7096:7051
+      - 7098:7053
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer9.org1.example.com/msp:/etc/hyperledger/fabric/msp
+        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer9.org1.example.com/tls:/etc/hyperledger/fabric/tls
+    depends_on:
+      - orderer.example.com
+      - couchdb9-1
 
   peer0.org2.example.com:
     container_name: peer0.org2.example.com
@@ -812,7 +536,7 @@ services:
       - CORE_PEER_ID=peer4.org2.example.com
       - CORE_PEER_LOCALMSPID=Org2MSP
       - CORE_PEER_ADDRESS=peer4.org2.example.com:7051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.example.com:7051      
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer5.org2.example.com:7051      
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer4.org2.example.com:7051
       - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb4-2:5984
@@ -827,6 +551,126 @@ services:
       - orderer.example.com
       - couchdb4-2
 
+  peer5.org2.example.com:
+    container_name: peer5.org2.example.com
+    extends:
+      file:   base.yaml
+      service: peer
+    environment:
+      - CORE_PEER_ID=peer5.org2.example.com
+      - CORE_PEER_LOCALMSPID=Org2MSP
+      - CORE_PEER_ADDRESS=peer5.org2.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer6.org2.example.com:7051      
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer5.org2.example.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb5-2:5984
+    ports:
+      - 8076:7051
+      - 8078:7053
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer5.org2.example.com/msp:/etc/hyperledger/fabric/msp
+        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer5.org2.example.com/tls:/etc/hyperledger/fabric/tls
+    depends_on:
+      - orderer.example.com
+      - couchdb5-2
+  
+  peer6.org2.example.com:
+    container_name: peer6.org2.example.com
+    extends:
+      file:   base.yaml
+      service: peer
+    environment:
+      - CORE_PEER_ID=peer6.org2.example.com
+      - CORE_PEER_LOCALMSPID=Org2MSP
+      - CORE_PEER_ADDRESS=peer6.org2.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer7.org2.example.com:7051      
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer6.org2.example.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb6-2:5984
+    ports:
+      - 8081:7051
+      - 8082:7053
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer6.org2.example.com/msp:/etc/hyperledger/fabric/msp
+        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer6.org2.example.com/tls:/etc/hyperledger/fabric/tls
+    depends_on:
+      - orderer.example.com
+      - couchdb6-2
+  
+  peer7.org2.example.com:
+    container_name: peer7.org2.example.com
+    extends:
+      file:   base.yaml
+      service: peer
+    environment:
+      - CORE_PEER_ID=peer7.org2.example.com
+      - CORE_PEER_LOCALMSPID=Org2MSP
+      - CORE_PEER_ADDRESS=peer7.org2.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer8.org2.example.com:7051      
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer7.org2.example.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb7-2:5984
+    ports:
+      - 8086:7051
+      - 8088:7053
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer7.org2.example.com/msp:/etc/hyperledger/fabric/msp
+        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer7.org2.example.com/tls:/etc/hyperledger/fabric/tls
+    depends_on:
+      - orderer.example.com
+      - couchdb7-2
+  
+  peer8.org2.example.com:
+    container_name: peer8.org2.example.com
+    extends:
+      file:   base.yaml
+      service: peer
+    environment:
+      - CORE_PEER_ID=peer8.org2.example.com
+      - CORE_PEER_LOCALMSPID=Org2MSP
+      - CORE_PEER_ADDRESS=peer8.org2.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer9.org2.example.com:7051      
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer8.org2.example.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb8-2:5984
+    ports:
+      - 8091:7051
+      - 8092:7053
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer8.org2.example.com/msp:/etc/hyperledger/fabric/msp
+        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer8.org2.example.com/tls:/etc/hyperledger/fabric/tls
+    depends_on:
+      - orderer.example.com
+      - couchdb8-2
+
+  peer9.org2.example.com:
+    container_name: peer9.org2.example.com
+    extends:
+      file:   base.yaml
+      service: peer
+    environment:
+      - CORE_PEER_ID=peer9.org2.example.com
+      - CORE_PEER_LOCALMSPID=Org2MSP
+      - CORE_PEER_ADDRESS=peer9.org2.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.example.com:7051      
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer9.org2.example.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb9-2:5984
+    ports:
+      - 8096:7051
+      - 8098:7053
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer9.org2.example.com/msp:/etc/hyperledger/fabric/msp
+        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer9.org2.example.com/tls:/etc/hyperledger/fabric/tls
+    depends_on:
+      - orderer.example.com
+      - couchdb9-2
+  
   couchdb0-1:
     container_name: couchdb0-1
     extends:
@@ -866,6 +710,54 @@ services:
       service: couchdb
     ports:
       - "13984:5984"
+
+  couchdb5-1:
+    container_name: couchdb5-1
+    extends:
+      file: base.yaml
+      service: couchdb
+    ports:
+      - "15984:5984"
+  
+  couchdb6-1:
+    container_name: couchdb6-1
+    extends:
+      file: base.yaml
+      service: couchdb
+    ports:
+      - "17984:5984"
+  
+  couchdb7-1:
+    container_name: couchdb7-1
+    extends:
+      file: base.yaml
+      service: couchdb
+    ports:
+      - "19984:5984"
+  
+  couchdb8-1:
+    container_name: couchdb8-1
+    extends:
+      file: base.yaml
+      service: couchdb
+    ports:
+      - "21984:5984"
+  
+  couchdb9-1:
+    container_name: couchdb9-1
+    extends:
+      file: base.yaml
+      service: couchdb
+    ports:
+      - "23984:5984"
+  
+  # couchdb10-1:
+  #   container_name: couchdb10-1
+  #   extends:
+  #     file: base.yaml
+  #     service: couchdb
+  #   ports:
+  #     - "25984:5984"
 
   couchdb0-2:
     container_name: couchdb0-2
@@ -907,6 +799,52 @@ services:
     ports:
       - "14984:5984"
 
-
+  couchdb5-2:
+    container_name: couchdb5-2
+    extends:
+      file: base.yaml
+      service: couchdb
+    ports:
+      - "16984:5984"
+  
+  couchdb6-2:
+    container_name: couchdb6-2
+    extends:
+      file: base.yaml
+      service: couchdb
+    ports:
+      - "18984:5984"
+  
+  couchdb7-2:
+    container_name: couchdb7-2
+    extends:
+      file: base.yaml
+      service: couchdb
+    ports:
+      - "20984:5984"
+  
+  couchdb8-2:
+    container_name: couchdb8-2
+    extends:
+      file: base.yaml
+      service: couchdb
+    ports:
+      - "22984:5984"
+  
+  couchdb9-2:
+    container_name: couchdb9-2
+    extends:
+      file: base.yaml
+      service: couchdb
+    ports:
+      - "24984:5984"
+  
+  # couchdb10-2:
+  #   container_name: couchdb10-2
+  #   extends:
+  #     file: base.yaml
+  #     service: couchdb
+  #   ports:
+  #     - "26984:5984"
 
 

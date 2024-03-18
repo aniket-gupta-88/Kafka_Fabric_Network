@@ -38,10 +38,6 @@ echo
 cd ../
 sleep 2
 docker-compose up -d
-
-# sleep 2
-
-# docker-compose -f docker-compose-couch.yaml up -d
 cd ../
 sleep 5
 echo
