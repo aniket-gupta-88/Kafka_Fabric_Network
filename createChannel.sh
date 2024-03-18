@@ -127,6 +127,41 @@ setGlobalsForPeer15Org1(){
     export CORE_PEER_ADDRESS=localhost:7126
 }
 
+setGlobalsForPeer16Org1(){
+    export CORE_PEER_LOCALMSPID="Org1MSP"
+    export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG1_CA
+    export CORE_PEER_MSPCONFIGPATH=${PWD}/artifacts/channel/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+    export CORE_PEER_ADDRESS=localhost:7131
+}
+
+setGlobalsForPeer17Org1(){
+    export CORE_PEER_LOCALMSPID="Org1MSP"
+    export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG1_CA
+    export CORE_PEER_MSPCONFIGPATH=${PWD}/artifacts/channel/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+    export CORE_PEER_ADDRESS=localhost:7136
+}
+
+setGlobalsForPeer18Org1(){
+    export CORE_PEER_LOCALMSPID="Org1MSP"
+    export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG1_CA
+    export CORE_PEER_MSPCONFIGPATH=${PWD}/artifacts/channel/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+    export CORE_PEER_ADDRESS=localhost:7141
+}
+
+setGlobalsForPeer19Org1(){
+    export CORE_PEER_LOCALMSPID="Org1MSP"
+    export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG1_CA
+    export CORE_PEER_MSPCONFIGPATH=${PWD}/artifacts/channel/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+    export CORE_PEER_ADDRESS=localhost:7146
+}
+
+setGlobalsForPeer20Org1(){
+    export CORE_PEER_LOCALMSPID="Org1MSP"
+    export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG1_CA
+    export CORE_PEER_MSPCONFIGPATH=${PWD}/artifacts/channel/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+    export CORE_PEER_ADDRESS=localhost:7151
+}
+
 # SETTING GLOBALS FOR ORG2
 setGlobalsForPeer0Org2(){
     export CORE_PEER_LOCALMSPID="Org2MSP"
@@ -240,6 +275,40 @@ setGlobalsForPeer15Org2(){
     export CORE_PEER_ADDRESS=localhost:8126
 }
 
+setGlobalsForPeer16Org2(){
+    export CORE_PEER_LOCALMSPID="Org2MSP"
+    export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG2_CA
+    export CORE_PEER_MSPCONFIGPATH=${PWD}/artifacts/channel/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
+    export CORE_PEER_ADDRESS=localhost:8131
+}
+
+setGlobalsForPeer17Org2(){
+    export CORE_PEER_LOCALMSPID="Org2MSP"
+    export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG2_CA
+    export CORE_PEER_MSPCONFIGPATH=${PWD}/artifacts/channel/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
+    export CORE_PEER_ADDRESS=localhost:8136
+}
+
+setGlobalsForPeer18Org2(){
+    export CORE_PEER_LOCALMSPID="Org2MSP"
+    export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG2_CA
+    export CORE_PEER_MSPCONFIGPATH=${PWD}/artifacts/channel/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
+    export CORE_PEER_ADDRESS=localhost:8141
+}
+
+setGlobalsForPeer19Org2(){
+    export CORE_PEER_LOCALMSPID="Org2MSP"
+    export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG2_CA
+    export CORE_PEER_MSPCONFIGPATH=${PWD}/artifacts/channel/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
+    export CORE_PEER_ADDRESS=localhost:8146
+}
+
+setGlobalsForPeer20Org2(){
+    export CORE_PEER_LOCALMSPID="Org2MSP"
+    export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG2_CA
+    export CORE_PEER_MSPCONFIGPATH=${PWD}/artifacts/channel/crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
+    export CORE_PEER_ADDRESS=localhost:8151
+}
 
 createChannel(){
     rm -rf ./channel-artifacts/*
@@ -312,9 +381,29 @@ joinChannel(){
     echo "Peer 14 in Org1 joining the channel..."
     peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
 
-    # setGlobalsForPeer15Org1
-    # echo "Peer 15 in Org1 joining the channel..."
-    # peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
+    setGlobalsForPeer15Org1
+    echo "Peer 15 in Org1 joining the channel..."
+    peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
+
+    setGlobalsForPeer16Org1
+    echo "Peer 16 in Org1 joining the channel..."
+    peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
+
+    setGlobalsForPeer17Org1
+    echo "Peer 17 in Org1 joining the channel..."
+    peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
+
+    setGlobalsForPeer18Org1
+    echo "Peer 18 in Org1 joining the channel..."
+    peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
+
+    setGlobalsForPeer19Org1
+    echo "Peer 19 in Org1 joining the channel..."
+    peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
+
+    setGlobalsForPeer20Org1
+    echo "Peer 20 in Org1 joining the channel..."
+    peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
 
     echo 
     echo "Starting with ORG2 peers ........."
@@ -380,9 +469,29 @@ joinChannel(){
     echo "Peer 14 in Org2 joining the channel..."
     peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
 
-    # setGlobalsForPeer15Org2
-    # echo "Peer 15 in Org2 joining the channel..."
-    # peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
+    setGlobalsForPeer15Org2
+    echo "Peer 15 in Org2 joining the channel..."
+    peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
+
+    setGlobalsForPeer16Org2
+    echo "Peer 16 in Org2 joining the channel..."
+    peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
+
+    setGlobalsForPeer17Org2
+    echo "Peer 17 in Org2 joining the channel..."
+    peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
+
+    setGlobalsForPeer18Org2
+    echo "Peer 18 in Org2 joining the channel..."
+    peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
+
+    setGlobalsForPeer19Org2
+    echo "Peer 19 in Org2 joining the channel..."
+    peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
+
+    setGlobalsForPeer20Org2
+    echo "Peer 20 in Org2 joining the channel..."
+    peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
 
 
     echo "All peers have joined the channel now updating AnchorPeers ...."
