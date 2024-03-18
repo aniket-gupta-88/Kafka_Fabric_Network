@@ -416,7 +416,7 @@ services:
       - CORE_PEER_ID=peer9.org1.example.com
       - CORE_PEER_LOCALMSPID=Org1MSP
       - CORE_PEER_ADDRESS=peer9.org1.example.com:7051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.example.com:7051      
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer10.org1.example.com:7051      
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer9.org1.example.com:7051
       - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb9-1:5984
@@ -430,6 +430,126 @@ services:
     depends_on:
       - orderer.example.com
       - couchdb9-1
+
+  peer10.org1.example.com:
+    container_name: peer10.org1.example.com
+    extends:
+      file:   base.yaml
+      service: peer
+    environment:
+      - CORE_PEER_ID=peer10.org1.example.com
+      - CORE_PEER_LOCALMSPID=Org1MSP
+      - CORE_PEER_ADDRESS=peer10.org1.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer11.org1.example.com:7051      
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer10.org1.example.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb10-1:5984
+    ports:
+      - 7101:7051
+      - 7102:7053
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer10.org1.example.com/msp:/etc/hyperledger/fabric/msp
+        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer10.org1.example.com/tls:/etc/hyperledger/fabric/tls
+    depends_on:
+      - orderer.example.com
+      - couchdb10-1
+  
+  peer11.org1.example.com:
+    container_name: peer11.org1.example.com
+    extends:
+      file:   base.yaml
+      service: peer
+    environment:
+      - CORE_PEER_ID=peer11.org1.example.com
+      - CORE_PEER_LOCALMSPID=Org1MSP
+      - CORE_PEER_ADDRESS=peer11.org1.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer12.org1.example.com:7051      
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer11.org1.example.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb11-1:5984
+    ports:
+      - 7106:7051
+      - 7108:7053
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer11.org1.example.com/msp:/etc/hyperledger/fabric/msp
+        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer11.org1.example.com/tls:/etc/hyperledger/fabric/tls
+    depends_on:
+      - orderer.example.com
+      - couchdb11-1
+  
+  peer12.org1.example.com:
+    container_name: peer12.org1.example.com
+    extends:
+      file:   base.yaml
+      service: peer
+    environment:
+      - CORE_PEER_ID=peer12.org1.example.com
+      - CORE_PEER_LOCALMSPID=Org1MSP
+      - CORE_PEER_ADDRESS=peer12.org1.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer13.org1.example.com:7051      
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer12.org1.example.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb12-1:5984
+    ports:
+      - 7111:7051
+      - 7112:7053
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer12.org1.example.com/msp:/etc/hyperledger/fabric/msp
+        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer12.org1.example.com/tls:/etc/hyperledger/fabric/tls
+    depends_on:
+      - orderer.example.com
+      - couchdb12-1
+  
+  peer13.org1.example.com:
+    container_name: peer13.org1.example.com
+    extends:
+      file:   base.yaml
+      service: peer
+    environment:
+      - CORE_PEER_ID=peer13.org1.example.com
+      - CORE_PEER_LOCALMSPID=Org1MSP
+      - CORE_PEER_ADDRESS=peer13.org1.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer14.org1.example.com:7051      
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer13.org1.example.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb13-1:5984
+    ports:
+      - 7116:7051
+      - 7118:7053
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer13.org1.example.com/msp:/etc/hyperledger/fabric/msp
+        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer13.org1.example.com/tls:/etc/hyperledger/fabric/tls
+    depends_on:
+      - orderer.example.com
+      - couchdb13-1
+  
+  peer14.org1.example.com:
+    container_name: peer14.org1.example.com
+    extends:
+      file:   base.yaml
+      service: peer
+    environment:
+      - CORE_PEER_ID=peer14.org1.example.com
+      - CORE_PEER_LOCALMSPID=Org1MSP
+      - CORE_PEER_ADDRESS=peer14.org1.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.example.com:7051      
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer14.org1.example.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb14-1:5984
+    ports:
+      - 7121:7051
+      - 7122:7053
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer14.org1.example.com/msp:/etc/hyperledger/fabric/msp
+        - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer14.org1.example.com/tls:/etc/hyperledger/fabric/tls
+    depends_on:
+      - orderer.example.com
+      - couchdb14-1
 
   peer0.org2.example.com:
     container_name: peer0.org2.example.com
@@ -656,7 +776,7 @@ services:
       - CORE_PEER_ID=peer9.org2.example.com
       - CORE_PEER_LOCALMSPID=Org2MSP
       - CORE_PEER_ADDRESS=peer9.org2.example.com:7051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.example.com:7051      
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer10.org2.example.com:7051      
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer9.org2.example.com:7051
       - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb9-2:5984
@@ -670,7 +790,127 @@ services:
     depends_on:
       - orderer.example.com
       - couchdb9-2
+
+  peer10.org2.example.com:
+    container_name: peer10.org2.example.com
+    extends:
+      file:   base.yaml
+      service: peer
+    environment:
+      - CORE_PEER_ID=peer10.org2.example.com
+      - CORE_PEER_LOCALMSPID=Org2MSP
+      - CORE_PEER_ADDRESS=peer10.org2.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer11.org2.example.com:7051      
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer10.org2.example.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb10-2:5984
+    ports:
+      - 8101:7051
+      - 8102:7053
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer10.org2.example.com/msp:/etc/hyperledger/fabric/msp
+        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer10.org2.example.com/tls:/etc/hyperledger/fabric/tls
+    depends_on:
+      - orderer.example.com
+      - couchdb10-2
   
+  peer11.org2.example.com:
+    container_name: peer11.org2.example.com
+    extends:
+      file:   base.yaml
+      service: peer
+    environment:
+      - CORE_PEER_ID=peer11.org2.example.com
+      - CORE_PEER_LOCALMSPID=Org2MSP
+      - CORE_PEER_ADDRESS=peer11.org2.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer12.org2.example.com:7051      
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer11.org2.example.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb11-2:5984
+    ports:
+      - 8106:7051
+      - 8108:7053
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer11.org2.example.com/msp:/etc/hyperledger/fabric/msp
+        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer11.org2.example.com/tls:/etc/hyperledger/fabric/tls
+    depends_on:
+      - orderer.example.com
+      - couchdb11-2
+  
+  peer12.org2.example.com:
+    container_name: peer12.org2.example.com
+    extends:
+      file:   base.yaml
+      service: peer
+    environment:
+      - CORE_PEER_ID=peer12.org2.example.com
+      - CORE_PEER_LOCALMSPID=Org2MSP
+      - CORE_PEER_ADDRESS=peer12.org2.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer13.org2.example.com:7051      
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer12.org2.example.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb12-2:5984
+    ports:
+      - 8111:7051
+      - 8112:7053
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer12.org2.example.com/msp:/etc/hyperledger/fabric/msp
+        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer12.org2.example.com/tls:/etc/hyperledger/fabric/tls
+    depends_on:
+      - orderer.example.com
+      - couchdb12-2
+  
+  peer13.org2.example.com:
+    container_name: peer13.org2.example.com
+    extends:
+      file:   base.yaml
+      service: peer
+    environment:
+      - CORE_PEER_ID=peer13.org2.example.com
+      - CORE_PEER_LOCALMSPID=Org2MSP
+      - CORE_PEER_ADDRESS=peer13.org2.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer14.org2.example.com:7051      
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer13.org2.example.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb13-2:5984
+    ports:
+      - 8116:7051
+      - 8118:7053
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer13.org2.example.com/msp:/etc/hyperledger/fabric/msp
+        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer13.org2.example.com/tls:/etc/hyperledger/fabric/tls
+    depends_on:
+      - orderer.example.com
+      - couchdb13-2
+  
+  peer14.org2.example.com:
+    container_name: peer14.org2.example.com
+    extends:
+      file:   base.yaml
+      service: peer
+    environment:
+      - CORE_PEER_ID=peer14.org2.example.com
+      - CORE_PEER_LOCALMSPID=Org2MSP
+      - CORE_PEER_ADDRESS=peer14.org2.example.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.example.com:7051      
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer14.org2.example.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb14-2:5984
+    ports:
+      - 8121:7051
+      - 8122:7053
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer14.org2.example.com/msp:/etc/hyperledger/fabric/msp
+        - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer14.org2.example.com/tls:/etc/hyperledger/fabric/tls
+    depends_on:
+      - orderer.example.com
+      - couchdb14-2
+
   couchdb0-1:
     container_name: couchdb0-1
     extends:
@@ -751,13 +991,45 @@ services:
     ports:
       - "23984:5984"
   
-  # couchdb10-1:
-  #   container_name: couchdb10-1
-  #   extends:
-  #     file: base.yaml
-  #     service: couchdb
-  #   ports:
-  #     - "25984:5984"
+  couchdb10-1:
+    container_name: couchdb10-1
+    extends:
+      file: base.yaml
+      service: couchdb
+    ports:
+      - "25984:5984"
+
+  couchdb11-1:
+    container_name: couchdb11-1
+    extends:
+      file: base.yaml
+      service: couchdb
+    ports:
+      - "27984:5984"
+  
+  couchdb12-1:
+    container_name: couchdb12-1
+    extends:
+      file: base.yaml
+      service: couchdb
+    ports:
+      - "29984:5984"
+  
+  couchdb13-1:
+    container_name: couchdb13-1
+    extends:
+      file: base.yaml
+      service: couchdb
+    ports:
+      - "31984:5984"
+  
+  couchdb14-1:
+    container_name: couchdb14-1
+    extends:
+      file: base.yaml
+      service: couchdb
+    ports:
+      - "33984:5984"
 
   couchdb0-2:
     container_name: couchdb0-2
@@ -839,12 +1111,43 @@ services:
     ports:
       - "24984:5984"
   
-  # couchdb10-2:
-  #   container_name: couchdb10-2
-  #   extends:
-  #     file: base.yaml
-  #     service: couchdb
-  #   ports:
-  #     - "26984:5984"
+  couchdb10-2:
+    container_name: couchdb10-2
+    extends:
+      file: base.yaml
+      service: couchdb
+    ports:
+      - "26984:5984"
 
+  couchdb11-2:
+    container_name: couchdb11-2
+    extends:
+      file: base.yaml
+      service: couchdb
+    ports:
+      - "28984:5984"
+  
+  couchdb12-2:
+    container_name: couchdb12-2
+    extends:
+      file: base.yaml
+      service: couchdb
+    ports:
+      - "30984:5984"
+  
+  couchdb13-2:
+    container_name: couchdb13-2
+    extends:
+      file: base.yaml
+      service: couchdb
+    ports:
+      - "32984:5984"
+  
+  couchdb14-2:
+    container_name: couchdb14-2
+    extends:
+      file: base.yaml
+      service: couchdb
+    ports:
+      - "34984:5984"
 
