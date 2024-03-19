@@ -181,57 +181,57 @@ joinChannel(){
     echo "Peer 0 in Org2 joining the channel..."
     peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
 
-    # setGlobalsForPeer1Org1
-    # echo "Peer 1 in Org1 joining the channel..."
-    # peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
+    setGlobalsForPeer1Org1
+    echo "Peer 1 in Org1 joining the channel..."
+    peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
 
     setGlobalsForPeer1Org2
     echo "Peer 1 in Org2 joining the channel..."
     peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
 
-    # setGlobalsForPeer2Org1
-    # echo "Peer 2 in Org1 joining the channel..."
-    # peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
+    setGlobalsForPeer2Org1
+    echo "Peer 2 in Org1 joining the channel..."
+    peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
 
     setGlobalsForPeer2Org2
     echo "Peer 2 in Org2 joining the channel..."
     peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
 
-    # setGlobalsForPeer3Org1
-    # echo "Peer 3 in Org1 joining the channel..."
-    # peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
+    setGlobalsForPeer3Org1
+    echo "Peer 3 in Org1 joining the channel..."
+    peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
 
     setGlobalsForPeer3Org2
     echo "Peer 3 in Org2 joining the channel..."
     peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
 
-    # setGlobalsForPeer4Org1
-    # echo "Peer 4 in Org1 joining the channel..."
-    # peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
+    setGlobalsForPeer4Org1
+    echo "Peer 4 in Org1 joining the channel..."
+    peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
 
     setGlobalsForPeer4Org2
     echo "Peer 4 in Org2 joining the channel..."
     peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
 
-    # setGlobalsForPeer5Org1
-    # echo "Peer 5 in Org1 joining the channel..."
-    # peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
+    setGlobalsForPeer5Org1
+    echo "Peer 5 in Org1 joining the channel..."
+    peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
 
-    # setGlobalsForPeer6Org1
-    # echo "Peer 6 in Org1 joining the channel..."
-    # peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
+    setGlobalsForPeer6Org1
+    echo "Peer 6 in Org1 joining the channel..."
+    peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
 
-    # setGlobalsForPeer7Org1
-    # echo "Peer 7 in Org1 joining the channel..."
-    # peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
+    setGlobalsForPeer7Org1
+    echo "Peer 7 in Org1 joining the channel..."
+    peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
 
-    # setGlobalsForPeer8Org1
-    # echo "Peer 8 in Org1 joining the channel..."
-    # peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
+    setGlobalsForPeer8Org1
+    echo "Peer 8 in Org1 joining the channel..."
+    peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
 
-    # setGlobalsForPeer9Org1
-    # echo "Peer 9 in Org1 joining the channel..."
-    # peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
+    setGlobalsForPeer9Org1
+    echo "Peer 9 in Org1 joining the channel..."
+    peer channel join -b ./channel-artifacts/$CHANNEL_NAME.block
     
     setGlobalsForPeer5Org2
     echo "Peer 5 in Org2 joining the channel..."
