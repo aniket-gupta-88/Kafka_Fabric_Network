@@ -8,7 +8,7 @@ test:
       rateControl:
         type: fixed-rate
         opts:
-          tps: 10
+          tps: 100
       workload:
         module: benchmarks/scenario/base/createCar.js
 
