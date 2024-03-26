@@ -1,116 +1,57 @@
-variables:
-  txNumber: 1000 #Make the changes here
-  tps: 100
-
 test:
   workers:
     type: local
-    number: 5  
+    number: 1 
   rounds:
     - label: Create Car
-      txNumber: ${{ variables.txNumber }}
+      txNumber: 1000
       rateControl:
         type: fixed-rate
         opts:
-          tps: ${{ variables.tps }}
+          tps: 30
       workload:
         module: benchmarks/scenario/base/createCar.js
 
     - label: Query Car
       description: Test description for the query performance of the deployed contract.
-      txNumber: ${{ variables.txNumber }}
+      txNumber: 1000
       rateControl:
         type: fixed-rate
         opts:
-          tps: ${{ variables.tps }}
+          tps: 30
       workload:
         module: benchmarks/scenario/base/queryCar.js
       
     - label: Update Car
       description: Test description for the Update performance of the deployed contract.
-      txNumber: ${{ variables.txNumber }}
+      txNumber: 1000
       rateControl:
         type: fixed-rate
         opts:
-          tps: ${{ variables.tps }}
+          tps: 30
       workload:
         module: benchmarks/scenario/base/update.js
 
 
     - label: Transfer Car
       description: Test description for the Transfer performance of the deployed contract.
-      txNumber: ${{ variables.txNumber }}
+      txNumber: 1000
       rateControl:
         type: fixed-rate
         opts:
-          tps: ${{ variables.tps }}
+          tps: 30
       workload:
         module: benchmarks/scenario/base/transfer.js
 
     - label: Delete Car
       description: Test description for the delete performance of the deployed contract.
-      txNumber: ${{ variables.txNumber }}
+      txNumber: 1000
       rateControl:
         type: fixed-rate
         opts:
-          tps: ${{ variables.tps }}
+          tps: 30
       workload:
         module: benchmarks/scenario/base/delete.js
-
-# test:
-#   workers:
-#     type: local
-#     number: 5  
-#   rounds:
-#     - label: Create Car
-#       txNumber: 1000
-#       rateControl:
-#         type: fixed-rate
-#         opts:
-#           tps: 100
-#       workload:
-#         module: benchmarks/scenario/base/createCar.js
-
-#     - label: Query Car
-#       description: Test description for the query performance of the deployed contract.
-#       txNumber: 1000
-#       rateControl:
-#         type: fixed-rate
-#         opts:
-#           tps: 100
-#       workload:
-#         module: benchmarks/scenario/base/queryCar.js
-      
-#     - label: Update Car
-#       description: Test description for the Update performance of the deployed contract.
-#       txNumber: 1000
-#       rateControl:
-#         type: fixed-rate
-#         opts:
-#           tps: 100
-#       workload:
-#         module: benchmarks/scenario/base/update.js
-
-
-#     - label: Transfer Car
-#       description: Test description for the Transfer performance of the deployed contract.
-#       txNumber: 1000
-#       rateControl:
-#         type: fixed-rate
-#         opts:
-#           tps: 100
-#       workload:
-#         module: benchmarks/scenario/base/transfer.js
-
-#     - label: Delete Car
-#       description: Test description for the delete performance of the deployed contract.
-#       txNumber: 1000
-#       rateControl:
-#         type: fixed-rate
-#         opts:
-#           tps: 100
-#       workload:
-#         module: benchmarks/scenario/base/delete.js
 
     
 
